@@ -1,6 +1,6 @@
-# Vesc-Status
+# Vesc Status
 
-The Vesc Vision is an Iphone based app written in Objective-C that allows users to track, record, graph, and pull up past ride data, all in the same app.
+The Vesc Status is an Iphone based app written in Objective-C that allows users to track, record, graph, and pull up past ride data, all in the same app.
 
 Users can also record 0-20 acceleration, and view a large full screen speedometer, all based off of the vesc erpm data.
 
