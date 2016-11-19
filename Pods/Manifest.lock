@@ -1,0 +1,15 @@
+PODS:
+  - CorePlot (2.2)
+  - OneSignal (2.2.2)
+
+DEPENDENCIES:
+  - CorePlot (~> 2.2)
+  - OneSignal (~> 2.2.2)
+
+SPEC CHECKSUMS:
+  CorePlot: cbe0c6e14220705e32e06a89c7d6a5a908b7d7d8
+  OneSignal: e0b347d6eb671903e0cec630f1b4c1cc446bd874
+
+PODFILE CHECKSUM: 4c6a647a5842b966563fa3d68cc88d820e4e3c0c
+
+COCOAPODS: 1.1.0.rc.3
