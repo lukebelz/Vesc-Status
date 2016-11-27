@@ -16,6 +16,7 @@ Full features include:
    - Record VESC data into a "session" and pull up past "sessions" in the ride history tab
    - You can view current VESC data without recording a session
    - Battery meter with percentage
+   - [NEW] Record videos with graphical and numerical data embedded in an overlay, all in app
 
 This app is for use with the adafruit UART bluetooth module only.
 
