@@ -85,6 +85,10 @@
     return (*F-32)/1.8;
 }
 
+- (float) CToF: (float *)C {
+    return (*C*1.8)+32;
+}
+
 #pragma mark - Calculation Functions
 
 -(float) calculateDistance {
@@ -207,7 +211,7 @@
     voltageNow = voltage;
     batteryAmpNow = batteryAmp;
     motorAmpNow = motorAmp;
-    tempNow = temp;
+    tempNow = [self CToF: &temp];
     faultCodeNow = faultCode;
     speedNow = [self calculateSpeed: &rpm];
     timeNow = (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
@@ -246,7 +250,7 @@
     voltageNow = voltage;
     batteryAmpNow = batteryAmp;
     motorAmpNow = motorAmp;
-    tempNow = temp;
+    tempNow = [self CToF: &temp];
     faultCodeNow = faultCode;
     speedNow = [self calculateSpeed: &rpm];
     
@@ -344,6 +348,12 @@
 
 -(NSString*) getSpeedUnit {
     return speedUnit;
+}
+
+// Get Raw Data
+
+-(double) getTripTime {
+    return tripTime;
 }
 
 // Get Live Data

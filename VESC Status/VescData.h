@@ -61,6 +61,8 @@
 -(NSString*) getDistanceUnit;
 -(NSString*) getSpeedUnit;
 
+-(double) getTripTime;
+
 -(float) getVoltageNow;
 -(float) getCurrentBatteryPecentage;
 -(float) getMotorAmpNow;

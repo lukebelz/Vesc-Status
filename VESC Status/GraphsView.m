@@ -55,7 +55,7 @@
         hostView.hostedGraph = speedGraph;
         
         // Get the (default) plotspace from the graph so we can set its x/y ranges
-        CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *) speedGraph.defaultPlotSpace;
+        plotSpace = (CPTXYPlotSpace *) speedGraph.defaultPlotSpace;
         
         CPTPlotRange *globalYRange = [CPTPlotRange plotRangeWithLocation:[NSNumber numberWithInt:0] length:[NSNumber numberWithInt:80]];
         plotSpace.globalYRange = globalYRange;
@@ -144,7 +144,19 @@
         [speedGraph addPlot:tempPlot toPlotSpace:speedGraph.defaultPlotSpace];
         [speedGraph addPlot:speedPlot toPlotSpace:speedGraph.defaultPlotSpace];
     }
+    
+    scrollPlotTimer = [NSTimer scheduledTimerWithTimeInterval:0.2
+                                     target:self
+                                   selector:@selector(scrollPlot:)
+                                   userInfo:nil
+                                    repeats:YES];
     return self;
+}
+
+-(void) scrollPlot: (NSNotification *)nObject {
+    if([data getTripTime] > 10) {
+        [plotSpace setXRange: [CPTPlotRange plotRangeWithLocation:[NSNumber numberWithFloat:[data getTripTime]-10] length:[NSNumber numberWithFloat:20.0]]];
+    }
 }
 
 -(void) reloadView {
@@ -158,6 +170,14 @@
     //Reload Unit Labels
     [graphsFCLabel setText:[NSString stringWithFormat:@"(%@)", [data getTempUnit]]];
     [graphsMPHKPHLabel setText:[NSString stringWithFormat:@"(%@)", [data getSpeedUnit]]];
+}
+
+-(void) resetGraph {
+    [plotSpace setXRange: [CPTPlotRange plotRangeWithLocation:[NSNumber numberWithFloat:0] length:[NSNumber numberWithFloat:20.0]]];
+}
+
+-(void) stopGraphTimer {
+    [scrollPlotTimer invalidate];
 }
 
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plotnumberOfRecords {

@@ -10,12 +10,20 @@
 		4B11BA62BFA9FB1882CB50BE /* Pods_VESC_Status.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A211BD4CABA4ABBF293ADFD9 /* Pods_VESC_Status.framework */; };
 		59B57B9205A0B610CCD3F931 /* Pods_VESC_StatusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3053ABE8F356DB56C8DDF3D3 /* Pods_VESC_StatusUITests.framework */; };
 		6D6FD232C2B84475665ED108 /* Pods_VESC_StatusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB0935FC8AF2FD61765E6A8 /* Pods_VESC_StatusTests.framework */; };
+		E74735FC1DEA37ED00B8C5AA /* 2.gif in Resources */ = {isa = PBXBuildFile; fileRef = E74735FB1DEA37ED00B8C5AA /* 2.gif */; };
+		E74736001DEA43A900B8C5AA /* LaunchImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E74735FF1DEA43A900B8C5AA /* LaunchImage.xcassets */; };
 		E74824681DBFE08B006FF4A4 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74824671DBFE08B006FF4A4 /* SettingsView.m */; };
 		E74824B01DC0250E006FF4A4 /* GraphsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74824AF1DC0250E006FF4A4 /* GraphsView.m */; };
 		E74824B31DC047AC006FF4A4 /* RideHistoryListView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74824B21DC047AC006FF4A4 /* RideHistoryListView.m */; };
 		E74824B61DC052EB006FF4A4 /* DataView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74824B51DC052EB006FF4A4 /* DataView.m */; };
+		E74A2A781DE4C32B00BCEBCB /* VideoOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74A2A771DE4C32B00BCEBCB /* VideoOverlayView.m */; };
+		E74A2A7A1DE4ECC000BCEBCB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74A2A791DE4ECC000BCEBCB /* AVFoundation.framework */; };
 		E74B1E7C1DCC222800BBFE91 /* AccelerationTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74B1E7B1DCC222800BBFE91 /* AccelerationTimerView.m */; };
 		E751F8CC1DDFE9BF008C7876 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E751F8CB1DDFE9BF008C7876 /* Media.xcassets */; };
+		E7564F401DE8B92400DC824B /* AVCameraPainter.m in Sources */ = {isa = PBXBuildFile; fileRef = E7564F3D1DE8B92400DC824B /* AVCameraPainter.m */; };
+		E7564F411DE8B92400DC824B /* AVFrameDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7564F3F1DE8B92400DC824B /* AVFrameDrawer.m */; };
+		E7564F451DE9297300DC824B /* CurrentValuesView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7564F441DE9297300DC824B /* CurrentValuesView.m */; };
+		E7564F481DE9298700DC824B /* CurrentTripView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7564F471DE9298700DC824B /* CurrentTripView.m */; };
 		E78BE3401DB5810800281A63 /* Structures.m in Sources */ = {isa = PBXBuildFile; fileRef = E78BE33F1DB5810800281A63 /* Structures.m */; };
 		E78F7BB71DDF5DE600CDD563 /* SpeedometerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F7BB61DDF5DE600CDD563 /* SpeedometerView.m */; };
 		E79E62F11DC8F27E009D64C9 /* VescData.m in Sources */ = {isa = PBXBuildFile; fileRef = E79E62F01DC8F27E009D64C9 /* VescData.m */; };
@@ -60,6 +68,8 @@
 		A211BD4CABA4ABBF293ADFD9 /* Pods_VESC_Status.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VESC_Status.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF780B50969064F84197655C /* Pods-VESC StatusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VESC StatusTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VESC StatusTests/Pods-VESC StatusTests.release.xcconfig"; sourceTree = "<group>"; };
 		C0D7ECC71C2A9FB351CD600C /* Pods-VESC StatusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VESC StatusUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VESC StatusUITests/Pods-VESC StatusUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E74735FB1DEA37ED00B8C5AA /* 2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 2.gif; sourceTree = "<group>"; };
+		E74735FF1DEA43A900B8C5AA /* LaunchImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LaunchImage.xcassets; sourceTree = "<group>"; };
 		E74824661DBFE08B006FF4A4 /* SettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsView.h; sourceTree = "<group>"; };
 		E74824671DBFE08B006FF4A4 /* SettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsView.m; sourceTree = "<group>"; };
 		E74824AE1DC0250E006FF4A4 /* GraphsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphsView.h; sourceTree = "<group>"; };
@@ -68,10 +78,21 @@
 		E74824B21DC047AC006FF4A4 /* RideHistoryListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideHistoryListView.m; sourceTree = "<group>"; };
 		E74824B41DC052EA006FF4A4 /* DataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataView.h; sourceTree = "<group>"; };
 		E74824B51DC052EB006FF4A4 /* DataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataView.m; sourceTree = "<group>"; };
+		E74A2A761DE4C32B00BCEBCB /* VideoOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoOverlayView.h; sourceTree = "<group>"; };
+		E74A2A771DE4C32B00BCEBCB /* VideoOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoOverlayView.m; sourceTree = "<group>"; };
+		E74A2A791DE4ECC000BCEBCB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E74B1E7A1DCC222800BBFE91 /* AccelerationTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerationTimerView.h; sourceTree = "<group>"; };
 		E74B1E7B1DCC222800BBFE91 /* AccelerationTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerationTimerView.m; sourceTree = "<group>"; };
 		E74D30E61DDE7F11003AFC08 /* VESC Status.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "VESC Status.entitlements"; sourceTree = "<group>"; };
 		E751F8CB1DDFE9BF008C7876 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		E7564F3C1DE8B92400DC824B /* AVCameraPainter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCameraPainter.h; sourceTree = "<group>"; };
+		E7564F3D1DE8B92400DC824B /* AVCameraPainter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCameraPainter.m; sourceTree = "<group>"; };
+		E7564F3E1DE8B92400DC824B /* AVFrameDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVFrameDrawer.h; sourceTree = "<group>"; };
+		E7564F3F1DE8B92400DC824B /* AVFrameDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVFrameDrawer.m; sourceTree = "<group>"; };
+		E7564F431DE9297300DC824B /* CurrentValuesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentValuesView.h; sourceTree = "<group>"; };
+		E7564F441DE9297300DC824B /* CurrentValuesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentValuesView.m; sourceTree = "<group>"; };
+		E7564F461DE9298700DC824B /* CurrentTripView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentTripView.h; sourceTree = "<group>"; };
+		E7564F471DE9298700DC824B /* CurrentTripView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentTripView.m; sourceTree = "<group>"; };
 		E78BE33E1DB5810800281A63 /* Structures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Structures.h; sourceTree = "<group>"; };
 		E78BE33F1DB5810800281A63 /* Structures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Structures.m; sourceTree = "<group>"; };
 		E78F7BB51DDF5DE600CDD563 /* SpeedometerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedometerView.h; sourceTree = "<group>"; };
@@ -114,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E74A2A7A1DE4ECC000BCEBCB /* AVFoundation.framework in Frameworks */,
 				4B11BA62BFA9FB1882CB50BE /* Pods_VESC_Status.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +162,7 @@
 		01F955AC8A84A8D9D5145823 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E74A2A791DE4ECC000BCEBCB /* AVFoundation.framework */,
 				A211BD4CABA4ABBF293ADFD9 /* Pods_VESC_Status.framework */,
 				4FB0935FC8AF2FD61765E6A8 /* Pods_VESC_StatusTests.framework */,
 				3053ABE8F356DB56C8DDF3D3 /* Pods_VESC_StatusUITests.framework */,
@@ -160,6 +183,28 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E7564F3B1DE8B90B00DC824B /* Video Overlay Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E7564F3C1DE8B92400DC824B /* AVCameraPainter.h */,
+				E7564F3D1DE8B92400DC824B /* AVCameraPainter.m */,
+				E7564F3E1DE8B92400DC824B /* AVFrameDrawer.h */,
+				E7564F3F1DE8B92400DC824B /* AVFrameDrawer.m */,
+			);
+			name = "Video Overlay Classes";
+			sourceTree = "<group>";
+		};
+		E7564F421DE928FB00DC824B /* Video Overlay Views */ = {
+			isa = PBXGroup;
+			children = (
+				E7564F431DE9297300DC824B /* CurrentValuesView.h */,
+				E7564F441DE9297300DC824B /* CurrentValuesView.m */,
+				E7564F461DE9298700DC824B /* CurrentTripView.h */,
+				E7564F471DE9298700DC824B /* CurrentTripView.m */,
+			);
+			name = "Video Overlay Views";
+			sourceTree = "<group>";
+		};
 		E7B133AF1DC9AC5900C5C640 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +220,8 @@
 				E74824AF1DC0250E006FF4A4 /* GraphsView.m */,
 				E78F7BB51DDF5DE600CDD563 /* SpeedometerView.h */,
 				E78F7BB61DDF5DE600CDD563 /* SpeedometerView.m */,
+				E74A2A761DE4C32B00BCEBCB /* VideoOverlayView.h */,
+				E74A2A771DE4C32B00BCEBCB /* VideoOverlayView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -214,6 +261,9 @@
 			isa = PBXGroup;
 			children = (
 				E74D30E61DDE7F11003AFC08 /* VESC Status.entitlements */,
+				E74735FB1DEA37ED00B8C5AA /* 2.gif */,
+				E7564F3B1DE8B90B00DC824B /* Video Overlay Classes */,
+				E7564F421DE928FB00DC824B /* Video Overlay Views */,
 				E7B133B01DC9AD7100C5C640 /* Data Structure */,
 				E7B133AF1DC9AC5900C5C640 /* Views */,
 				E7CBBD941DB335BA00593DCF /* VESC Bits */,
@@ -226,6 +276,7 @@
 				E7CBBD611DB3353800593DCF /* Main.storyboard */,
 				E7CBBD661DB3353800593DCF /* LaunchScreen.storyboard */,
 				E7CBBD691DB3353800593DCF /* Info.plist */,
+				E74735FF1DEA43A900B8C5AA /* LaunchImage.xcassets */,
 				E751F8CB1DDFE9BF008C7876 /* Media.xcassets */,
 				E7CBBD581DB3353800593DCF /* Supporting Files */,
 			);
@@ -410,6 +461,8 @@
 				E7CBBD681DB3353800593DCF /* LaunchScreen.storyboard in Resources */,
 				E751F8CC1DDFE9BF008C7876 /* Media.xcassets in Resources */,
 				E7CBBD631DB3353800593DCF /* Main.storyboard in Resources */,
+				E74735FC1DEA37ED00B8C5AA /* 2.gif in Resources */,
+				E74736001DEA43A900B8C5AA /* LaunchImage.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,10 +628,14 @@
 				E74824B31DC047AC006FF4A4 /* RideHistoryListView.m in Sources */,
 				E7CBBDA71DB335CD00593DCF /* VescController.m in Sources */,
 				E7CBBDA51DB335CD00593DCF /* crc.cpp in Sources */,
+				E7564F401DE8B92400DC824B /* AVCameraPainter.m in Sources */,
 				E7CBBD921DB3355D00593DCF /* ViewController.m in Sources */,
 				E74824B61DC052EB006FF4A4 /* DataView.m in Sources */,
 				E79E62F11DC8F27E009D64C9 /* VescData.m in Sources */,
+				E7564F481DE9298700DC824B /* CurrentTripView.m in Sources */,
 				E74824B01DC0250E006FF4A4 /* GraphsView.m in Sources */,
+				E74A2A781DE4C32B00BCEBCB /* VideoOverlayView.m in Sources */,
+				E7564F411DE8B92400DC824B /* AVFrameDrawer.m in Sources */,
 				E7CBBDA61DB335CD00593DCF /* packet.cpp in Sources */,
 				E74B1E7C1DCC222800BBFE91 /* AccelerationTimerView.m in Sources */,
 				E74824681DBFE08B006FF4A4 /* SettingsView.m in Sources */,
@@ -587,6 +644,7 @@
 				E78F7BB71DDF5DE600CDD563 /* SpeedometerView.m in Sources */,
 				E7CBBDA31DB335CD00593DCF /* bldc_interface.cpp in Sources */,
 				E78BE3401DB5810800281A63 /* Structures.m in Sources */,
+				E7564F451DE9297300DC824B /* CurrentValuesView.m in Sources */,
 				E7CBBDA41DB335CD00593DCF /* buffer.cpp in Sources */,
 				E7CBBD5A1DB3353800593DCF /* main.m in Sources */,
 			);
@@ -740,6 +798,7 @@
 			baseConfigurationReference = 4B7B7188E027D5AFE3F518F0 /* Pods-VESC Status.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_ENTITLEMENTS = "VESC Status/VESC Status.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WRWV748AT4;
@@ -757,6 +816,7 @@
 			baseConfigurationReference = 705958D2D42BFD4DAE76645E /* Pods-VESC Status.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_ENTITLEMENTS = "VESC Status/VESC Status.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WRWV748AT4;

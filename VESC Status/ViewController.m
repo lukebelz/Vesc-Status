@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
     
@@ -37,25 +38,26 @@
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newVESCvalues:) name:@"newVESCvalues" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadPastData:) name:@"loadPastData" object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startStopRecordingFromVideo:) name:@"startStopRecordingFromVideo" object:nil];
+    
     // Create status label
     lblAppStatus = [strct createLabelWtihX:100 Y:5 Width:self.view.frame.size.width-200 Height:25 Font:@"Avenir" FontSize:12 Text:@"Starting Bluetooth" TextColor: [UIColor blackColor] TextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:lblAppStatus];
     
     // Create start/stop button
-    btnStartStopRecording = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-125, 5, 20, 20)];
+    btnStartStopRecording = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-145, 5, 40, 30)];
     [btnStartStopRecording setBackgroundColor:[UIColor greenColor]];
     [btnStartStopRecording addTarget:self action:@selector(startStopRecording) forControlEvents:UIControlEventTouchUpInside];
     btnStartStopRecording.alpha = 0;
-    btnStartStopRecording.layer.cornerRadius = 10;
-    [self.view addSubview:btnStartStopRecording];
+    btnStartStopRecording.layer.cornerRadius = 15;
+    //[self.view addSubview:btnStartStopRecording];
     
     // Data Panel
     dataView = [[DataView alloc] initWithFrame:CGRectMake(0, hieghtFromTop, self.view.frame.size.width, self.view.frame.size.height-hieghtFromTop) Data: data];
     [self.view addSubview:dataView];
     
     // Create panel buttons
-    goToLeft = [strct createButtonWtihX:0 Y:0 Width:100 Height:34 Font:@"Avenir" FontSize:12 Title:@"Open Tools" TitleColor:[UIColor blackColor] Action:@selector(openCloseTools)];
+    goToLeft = [strct createButtonWtihX:0 Y:0 Width:110 Height:34 Font:@"Avenir" FontSize:12 Title:@"Open Tools" TitleColor:[UIColor blackColor] Action:@selector(openCloseTools)];
     goToRight = [strct createButtonWtihX:self.view.frame.size.width-100 Y:0 Width:100 Height:34 Font:@"Avenir" FontSize:12 Title:@"Open Graphs" TitleColor:[UIColor blackColor] Action:@selector(openCloseGraphs)];
     
     // Add panel buttons to the view
@@ -84,11 +86,15 @@
     goToSpeedometer = [strct createButtonWtihX:(self.view.frame.size.width/2)-80 Y:150 Width:140 Height:34 Font:@"Avenir" FontSize:12 Title:@"Open Speedometer" TitleColor:[UIColor blackColor] Action:@selector(openCloseSpeedometer)];
     goToSpeedometer.alpha = 0;
     
+    goToVideoOverlay = [strct createButtonWtihX:(self.view.frame.size.width/2)-80 Y:185 Width:140 Height:34 Font:@"Avenir" FontSize:12 Title:@"Open Video Overlay" TitleColor:[UIColor blackColor] Action:@selector(openCloseVideoOverlay)];
+    goToVideoOverlay.alpha = 0;
+    
     // Add panel buttons to the view
     [toolsView addSubview:goToSettings];
     [toolsView addSubview:goToRideHistoryList];
     [toolsView addSubview:goToAcceleration];
     [toolsView addSubview:goToSpeedometer];
+    [toolsView addSubview:goToVideoOverlay];
 
     // Settings Panel
     settingsView = [[SettingsView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height-hieghtFromTop)];
@@ -111,8 +117,25 @@
     [speedometerView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:1.0]];
     [self.view addSubview:speedometerView];
     
+    NSLog(@"%f | %f", self.view.frame.size.height, self.view.frame.size.width);
+    
+    // Current Values View
+    currentValuesView = [[CurrentValuesView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, 568, 320-hieghtFromTop) Data: data];
+    [currentValuesView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:1.0]];
+    [self.view addSubview:currentValuesView];
+    
+    // Current Trip View
+    currentTripView = [[CurrentTripView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, 568, 320-hieghtFromTop) Data: data];
+    [currentTripView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:1.0]];
+    [self.view addSubview:currentTripView];
+    
+    // Video Overlay Panel
+    videoOverlayView = nil;
+    
     // Update current settings in dataView
     [self updateSettingsInViews];
+    
+    [self.view addSubview:btnStartStopRecording];
     
     // Set bool variables
     isRecording = NO;
@@ -123,6 +146,7 @@
     isRideHistoryListOpen = NO;
     isSpeedometerOpen = NO;
     isBluetoothReady = NO;
+    isVideoOverlayOpen = NO;
     
     sentPercentWarning = NO;
     
@@ -134,26 +158,37 @@
     // Init Bluetooth
     _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     
-    [OneSignal IdsAvailable:^(NSString* userId_, NSString* pushToken) {
-        userId = userId_;
-    }];
-    
+    if([settingsView getNotifications] == 1) {
+        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        
+        [OneSignal initWithLaunchOptions:appDelegate.launchOptionsSaved appId:@"4a313ea2-8e54-4f52-ba60-2fa81bd30482"];
+        
+        [OneSignal IdsAvailable:^(NSString* userId_, NSString* pushToken) {
+            userId = userId_;
+        }];
+    }
 }
 
 -(void) alertBatteryStatus {
     float curBattPercent = [data getCurrentBatteryPecentage];
     if(curBattPercent > 99  && !sentPercentWarning) {
-        [OneSignal postNotification:@{@"contents" : @{@"en": @"Battery is 100% Full!"}, @"include_player_ids": @[userId]}];
+        if([settingsView getNotifications] == 1) {
+            [OneSignal postNotification:@{@"contents" : @{@"en": @"Battery is 100% Full!"}, @"include_player_ids": @[userId]}];
+        }
         sentPercentWarning = YES;
     }
     
     if(curBattPercent > 48 && [data getCurrentBatteryPecentage] < 50 && !sentPercentWarning) {
-        [OneSignal postNotification:@{@"contents" : @{@"en": @"50% of Battery Left..."}, @"include_player_ids": @[userId]}];
+        if([settingsView getNotifications] == 1) {
+            [OneSignal postNotification:@{@"contents" : @{@"en": @"50% of Battery Left..."}, @"include_player_ids": @[userId]}];
+        }
         sentPercentWarning = YES;
     }
     
     if(curBattPercent > 18 && [data getCurrentBatteryPecentage] < 20 && !sentPercentWarning) {
-        [OneSignal postNotification:@{@"contents" : @{@"en": @"20% of Battery Left..."}, @"include_player_ids": @[userId]}];
+        if([settingsView getNotifications] == 1) {
+            [OneSignal postNotification:@{@"contents" : @{@"en": @"20% of Battery Left..."}, @"include_player_ids": @[userId]}];
+        }
         sentPercentWarning = YES;
     }
     
@@ -171,6 +206,7 @@
     btnStartStopRecording.alpha = 1;
     goToAcceleration.alpha = 1;
     goToSpeedometer.alpha = 1;
+    goToVideoOverlay.alpha = 1;
     
     isBluetoothReady = YES;
 }
@@ -179,6 +215,7 @@
     btnStartStopRecording.alpha = 0;
     goToAcceleration.alpha = 0;
     goToSpeedometer.alpha = 0;
+    goToVideoOverlay.alpha = 0;
     
     isBluetoothReady = NO;
     
@@ -199,10 +236,16 @@
 - (void) startStopRecording {
     if (!isRecording) {
         [self startRecording];
+        [graphsView resetGraph];
     } else {
         [self stopRecording];
+        [graphsView stopGraphTimer];
     }
 
+}
+
+-(void) startStopRecordingFromVideo:(NSNotification *)nObject {
+    [self startStopRecording];
 }
 
 - (void) startRecording {
@@ -227,6 +270,8 @@
     [data saveData];
     
     [rideHistoryListView updateRideHistoryList];
+    
+    [SVProgressHUD showSuccessWithStatus:@"Ride Saved Successfully"];
     
 }
 
@@ -332,7 +377,7 @@
         [self loadPanel:speedometerView];
         isSpeedometerOpen = YES;
         [goToLeft addTarget:self action:@selector(openCloseSpeedometer) forControlEvents:UIControlEventTouchUpInside];
-        [goToLeft setTitle:@"Close Timer" forState:UIControlStateNormal];
+        [goToLeft setTitle:@"Close Speedomter" forState:UIControlStateNormal];
     } else {
         [self closePanel:speedometerView];
         isSpeedometerOpen = NO;
@@ -341,12 +386,37 @@
     }
 }
 
+- (void) openCloseVideoOverlay {
+    if (!isVideoOverlayOpen) {
+        
+        // add view
+        videoOverlayView = [[VideoOverlayView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height-hieghtFromTop) Data: data GraphsView: graphsView ValuesView: currentValuesView TripView: currentTripView];
+        [videoOverlayView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:1.0]];
+        [self.view addSubview:videoOverlayView];
+        //
+        
+        [self loadPanel:videoOverlayView];
+        isVideoOverlayOpen = YES;
+        [goToLeft addTarget:self action:@selector(openCloseVideoOverlay) forControlEvents:UIControlEventTouchUpInside];
+        [goToLeft setTitle:@"Close Video" forState:UIControlStateNormal];
+    } else {
+        [self closePanel:videoOverlayView];
+        
+        // remove veiw
+        [videoOverlayView removeFromSuperview];
+        videoOverlayView = nil;
+        //
+        
+        isVideoOverlayOpen = NO;
+        [goToLeft removeTarget:self action:@selector(openCloseVideoOverlay) forControlEvents:UIControlEventTouchUpInside];
+        [self openCloseTools];
+    }
+}
+
 - (void) doGetValues {
-    //NSLog(@"Get Values");
     NSData *dataToSend = [_aVescController dataForGetValues:COMM_GET_VALUES val:0];
     if (dataToSend && _txCharacteristic) [_UARTPeripheral writeValue:dataToSend forCharacteristic:_txCharacteristic type:CBCharacteristicWriteWithResponse];
     
-    //if (isRecording)
     [self performSelector:@selector(getValuesTimeOut) withObject:nil afterDelay:3.0];
 }
 
@@ -376,6 +446,9 @@
         
         [dataView reloadView];
         [graphsView reloadView];
+        
+        [currentValuesView reloadView];
+        [currentTripView reloadView];
     } else {
         [data backgroundUpdateDataWithRPM:newData.rpm Voltage: newData.inpVoltage BatteryAmp:newData.avgInputCurrent MotorAmp:newData.avgMotorCurrent Temp:newData.temp_mos1 FaultCode:1];
         

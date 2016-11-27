@@ -16,13 +16,18 @@
     VescData *data;
     
     // Graphs view variables
+    CPTXYPlotSpace *plotSpace;
     CPTGraph *speedGraph;
     CPTScatterPlot *speedPlot, *voltagePlot, *batteryAmpPlot, *motorAmpPlot, *tempPlot;
     UILabel *graphsMPHKPHLabel, *graphsFCLabel;
     
+    NSTimer *scrollPlotTimer;
 }
 
 -(id) initWithFrame:(CGRect)frame Data: (VescData*) datax;
+
+-(void) resetGraph;
+-(void) stopGraphTimer;
 
 -(void) reloadView;
 

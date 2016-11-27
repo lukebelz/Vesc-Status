@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Structures.h"
+#import "SVProgressHUD.h"
 
 @interface RideHistoryListView : UIView <UITableViewDataSource,UITableViewDelegate> {
     NSString *dataPath;

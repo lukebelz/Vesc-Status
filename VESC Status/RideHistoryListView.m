@@ -73,6 +73,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [SVProgressHUD showWithStatus:@"Deleting..."];
         //remove the deleted object from your data source.
         //If your data source is an NSMutableArray, do this
         [[NSFileManager defaultManager] removeItemAtPath:rideHistoryPaths[indexPath.row] error:nil];
@@ -80,6 +81,7 @@
         [rideHistoryPaths removeObjectAtIndex:indexPath.row];
         [rideHistoryNames removeObjectAtIndex:indexPath.row];
         [tableView reloadData]; // tell table to refresh now
+        [SVProgressHUD showSuccessWithStatus:@"Ride Deleted Successfully"];
     }
 }
 
@@ -97,6 +99,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"loadPastData" object:[rideHistoryPaths objectAtIndex:indexPath.row]];
+    [SVProgressHUD showSuccessWithStatus:@"Ride Loaded Successfully"];
     NSLog(@"You click on item %ld", (long)indexPath.row);
 }
 

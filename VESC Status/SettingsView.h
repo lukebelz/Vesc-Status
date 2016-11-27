@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Structures.h"
+#import "SVProgressHUD.h"
 
-@interface SettingsView : UIView {
+@interface SettingsView : UIView <UITextFieldDelegate> {
     
     NSString *settingsPath;
     int systemUnit;
+    int notifications;
     int selectedBoard;
     int wheelDiameter1, wheelDiameter2, wheelDiameter3, wheelDiameter4;
     int battery1, battery2, battery3, battery4;
@@ -20,7 +22,7 @@
     
     // Settings view variable
     UITextField *wheelDiameterText1, *wheelDiameterText2, *wheelDiameterText3, *wheelDiameterText4;
-    UISegmentedControl *unitSystemSegmentedControl, *selectedBoardSegmentedControl, *battery1SegmentedControl, *battery2SegmentedControl, *battery3SegmentedControl, *battery4SegmentedControl;
+    UISegmentedControl *unitSystemSegmentedControl, *notificationSegmentedControl, *selectedBoardSegmentedControl, *battery1SegmentedControl, *battery2SegmentedControl, *battery3SegmentedControl, *battery4SegmentedControl;
 }
 
 -(void) saveSettings;
@@ -33,5 +35,7 @@
 -(int) getWheelDiameter;
 -(int) getMaxBatteryVoltage;
 -(int) getSelectedBoard;
+
+-(int) getNotifications;
 
 @end

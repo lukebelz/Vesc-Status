@@ -1,11 +1,12 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO
 ALWAYS_SEARCH_USER_PATHS = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/CorePlot" "${PODS_ROOT}/OneSignal/iOS_SDK/Framework"
+CLANG_MODULES_AUTOLINK = YES
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/CorePlot" "$PODS_CONFIGURATION_BUILD_DIR/GPUImage" "$PODS_CONFIGURATION_BUILD_DIR/SVProgressHUD" "${PODS_ROOT}/OneSignal/iOS_SDK/Framework"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private/CorePlot/ios" $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/OneSignal"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/CorePlot/CorePlot.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/OneSignal"
-OTHER_LDFLAGS = $(inherited) -ObjC -framework "CorePlot" -framework "OneSignal" -framework "SystemConfiguration"
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/CorePlot/CorePlot.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/GPUImage/GPUImage.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/SVProgressHUD/SVProgressHUD.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/OneSignal"
+OTHER_LDFLAGS = $(inherited) -ObjC -framework "CorePlot" -framework "GPUImage" -framework "OneSignal" -framework "SVProgressHUD" -framework "SystemConfiguration"
 PODS_BUILD_DIR = $BUILD_DIR
 PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_ROOT = ${SRCROOT}/Pods

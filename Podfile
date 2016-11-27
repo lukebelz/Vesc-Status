@@ -5,6 +5,8 @@ target 'VESC Status' do
 
 pod 'OneSignal', '~> 2.2.2’
 pod 'CorePlot', '~> 2.2'
+pod 'GPUImage', '~> 0.1'
+pod ‘SVProgressHUD’, '~> 1.0’
 
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
    use_frameworks!

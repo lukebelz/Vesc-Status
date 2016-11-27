@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <OneSignal/OneSignal.h>
 
+#import "SVProgressHUD.h"
+
 @import CoreBluetooth;
 @import QuartzCore;
 
@@ -22,6 +24,10 @@
 #import "VescData.h"
 #import "AccelerationTimerView.h"
 #import "SpeedometerView.h"
+#import "VideoOverlayView.h"
+
+#import "CurrentValuesView.h"
+#import "CurrentTripView.h"
 
 #define UART_SERVICE_UUID      @"6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
 #define RX_CHARACTERISTIC_UUID @"6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
@@ -36,6 +42,10 @@
 @class RideHistoryListView;
 @class AccelerationTimerView;
 @class SpeedometerView;
+@class VideoOverlayView;
+
+@class CurrentValuesView;
+@class CurrentTripView;
 
 @interface ViewController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate> {
     
@@ -50,10 +60,10 @@
     
     // Top bar variables
     UILabel *lblAppStatus;
-    UIButton *btnStartStopRecording, *goToLeft, *goToRight, *goToSettings, *goToAcceleration, *goToRideHistoryList, *goToSpeedometer;
+    UIButton *btnStartStopRecording, *goToLeft, *goToRight, *goToSettings, *goToAcceleration, *goToRideHistoryList, *goToSpeedometer, *goToVideoOverlay;
     
     // Status variables
-    BOOL isRecording, isSettingsOpen, isGraphsOpen, isToolsOpen, isAccelerationOpen, isRideHistoryListOpen, isSpeedometerOpen, isBluetoothReady,sentPercentWarning;
+    BOOL isRecording, isSettingsOpen, isGraphsOpen, isToolsOpen, isAccelerationOpen, isRideHistoryListOpen, isSpeedometerOpen, isVideoOverlayOpen, isBluetoothReady,sentPercentWarning;
     
     // View variables
     DataView *dataView;
@@ -62,7 +72,11 @@
     RideHistoryListView *rideHistoryListView;
     AccelerationTimerView *accelerationTimerView;
     SpeedometerView *speedometerView;
+    VideoOverlayView *videoOverlayView;
     UIView *toolsView;
+    
+    CurrentValuesView *currentValuesView;
+    CurrentTripView *currentTripView;
     
     // Data Structure
     VescData *data;

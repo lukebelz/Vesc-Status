@@ -8,8 +8,6 @@
 
 #import "DataView.h"
 
-extern NSString * const XXFooDidBarNotification;
-
 @implementation DataView
 
 -(id) initWithFrame:(CGRect)frame Data: (VescData*) datax {
@@ -177,14 +175,6 @@ extern NSString * const XXFooDidBarNotification;
         
         //[self addSubview:CurrentFaultCodeLabel];
     }
-
-    //lowBattery = [[NSNotification alloc] init];
-    
-    //NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    
-    //[center addObserver:lowBattery selector:nil name:nil object:nil];
-    
-    //[center postNotificationName:notification object:nil userInfo:nil];
     
     return self;
 }

@@ -1,15 +1,21 @@
 PODS:
   - CorePlot (2.2)
+  - GPUImage (0.1.7)
   - OneSignal (2.2.2)
+  - SVProgressHUD (1.1.3)
 
 DEPENDENCIES:
   - CorePlot (~> 2.2)
+  - GPUImage (~> 0.1)
   - OneSignal (~> 2.2.2)
+  - SVProgressHUD (~> 1.0)
 
 SPEC CHECKSUMS:
   CorePlot: cbe0c6e14220705e32e06a89c7d6a5a908b7d7d8
+  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   OneSignal: e0b347d6eb671903e0cec630f1b4c1cc446bd874
+  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
 
-PODFILE CHECKSUM: 4c6a647a5842b966563fa3d68cc88d820e4e3c0c
+PODFILE CHECKSUM: e9d631ca6c01e0be7ff39f346a7a0ca43fc760aa
 
 COCOAPODS: 1.1.0.rc.3

@@ -22,11 +22,19 @@
         
         [self addSubview:[strct createLabelWtihX:0 Y:0 Width:self.frame.size.width Height:50 Font:@"Avenir" FontSize:20 Text:@"Settings" TextColor: [UIColor blackColor] TextAlignment:NSTextAlignmentCenter]];
         
+        // Notification On/Off
+        [self addSubview:[strct createLabelWtihX:-40 Y:40 Width:(self.frame.size.width/2)-20 Height:40 Font:@"Avenir" FontSize:12 Text:@"Push Notifications: " TextColor: [UIColor blackColor] TextAlignment:NSTextAlignmentCenter]];
+        
+        notificationSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects: @"On", @"Off", nil]];
+        notificationSegmentedControl.frame = CGRectMake(self.frame.size.width/2-140, 50, 100, 25);
+        notificationSegmentedControl.selectedSegmentIndex = notifications;
+        [self addSubview:notificationSegmentedControl];
+        
         // Unit system
-        [self addSubview:[strct createLabelWtihX:-40 Y:50 Width:self.frame.size.width/2 Height:40 Font:@"Avenir" FontSize:12 Text:@"Unit System: " TextColor: [UIColor blackColor] TextAlignment:NSTextAlignmentCenter]];
+        [self addSubview:[strct createLabelWtihX:-40 Y:75 Width:self.frame.size.width/2 Height:40 Font:@"Avenir" FontSize:12 Text:@"Unit System: " TextColor: [UIColor blackColor] TextAlignment:NSTextAlignmentCenter]];
         
         unitSystemSegmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects: @"US", @"Metric", nil]];
-        unitSystemSegmentedControl.frame = CGRectMake(self.frame.size.width/2-140, 60, 100, 25);
+        unitSystemSegmentedControl.frame = CGRectMake(self.frame.size.width/2-140, 85, 100, 25);
         unitSystemSegmentedControl.selectedSegmentIndex = systemUnit;
         [self addSubview:unitSystemSegmentedControl];
         
@@ -47,6 +55,8 @@
         [wheelDiameterText1 setFont:[UIFont fontWithName:@"Avenir" size:12]];
         [wheelDiameterText1 setText:[NSString stringWithFormat:@"%d", wheelDiameter1]];
         [wheelDiameterText1 setTextAlignment:NSTextAlignmentCenter];
+        [wheelDiameterText1 setReturnKeyType:UIReturnKeyDone];
+        wheelDiameterText1.delegate = self;
         [self addSubview:wheelDiameterText1];
         
         [self addSubview:[strct createLabelWtihX:65 Y:130 Width:self.frame.size.width/2 Height:40 Font:@"Avenir" FontSize:12 Text:@"mm" TextColor: [UIColor blackColor] TextAlignment:NSTextAlignmentCenter]];
@@ -65,6 +75,8 @@
         [wheelDiameterText2 setFont:[UIFont fontWithName:@"Avenir" size:12]];
         [wheelDiameterText2 setText:[NSString stringWithFormat:@"%d", wheelDiameter2]];
         [wheelDiameterText2 setTextAlignment:NSTextAlignmentCenter];
+        [wheelDiameterText2 setReturnKeyType:UIReturnKeyDone];
+        wheelDiameterText2.delegate = self;
         [self addSubview:wheelDiameterText2];
         
         [self addSubview:[strct createLabelWtihX:65 Y:210 Width:self.frame.size.width/2 Height:40 Font:@"Avenir" FontSize:12 Text:@"mm" TextColor: [UIColor blackColor] TextAlignment:NSTextAlignmentCenter]];
@@ -83,6 +95,8 @@
         [wheelDiameterText3 setFont:[UIFont fontWithName:@"Avenir" size:12]];
         [wheelDiameterText3 setText:[NSString stringWithFormat:@"%d", wheelDiameter3]];
         [wheelDiameterText3 setTextAlignment:NSTextAlignmentCenter];
+        [wheelDiameterText3 setReturnKeyType:UIReturnKeyDone];
+        wheelDiameterText3.delegate = self;
         [self addSubview:wheelDiameterText3];
         
         [self addSubview:[strct createLabelWtihX:355 Y:130 Width:self.frame.size.width/2 Height:40 Font:@"Avenir" FontSize:12 Text:@"mm" TextColor: [UIColor blackColor] TextAlignment:NSTextAlignmentCenter]];
@@ -101,6 +115,8 @@
         [wheelDiameterText4 setFont:[UIFont fontWithName:@"Avenir" size:12]];
         [wheelDiameterText4 setText:[NSString stringWithFormat:@"%d", wheelDiameter4]];
         [wheelDiameterText4 setTextAlignment:NSTextAlignmentCenter];
+        [wheelDiameterText4 setReturnKeyType:UIReturnKeyDone];
+        wheelDiameterText4.delegate = self;
         [self addSubview:wheelDiameterText4];
         
         [self addSubview:[strct createLabelWtihX:355 Y:210 Width:self.frame.size.width/2 Height:40 Font:@"Avenir" FontSize:12 Text:@"mm" TextColor: [UIColor blackColor] TextAlignment:NSTextAlignmentCenter]];
@@ -114,8 +130,21 @@
     return self;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [textField resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    
+    return YES;
+    
+}
+
 -(void) saveSettings {
     systemUnit = (int) unitSystemSegmentedControl.selectedSegmentIndex;
+    notifications = (int) notificationSegmentedControl.selectedSegmentIndex+1;
     selectedBoard = (int) selectedBoardSegmentedControl.selectedSegmentIndex+1;
     wheelDiameter1 = [wheelDiameterText1.text intValue];
     wheelDiameter2 = [wheelDiameterText2.text intValue];
@@ -126,7 +155,9 @@
     battery3 = (int) battery3SegmentedControl.selectedSegmentIndex+6;
     battery4 = (int) battery4SegmentedControl.selectedSegmentIndex+6;
     
-    [[NSString stringWithFormat:@"%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d", systemUnit, selectedBoard, wheelDiameter1, wheelDiameter2, wheelDiameter3, wheelDiameter4, battery1, battery2, battery3, battery4] writeToFile:settingsPath atomically:YES encoding:NSStringEncodingConversionAllowLossy error:nil]; // Write settings
+    [[NSString stringWithFormat:@"%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d", systemUnit, selectedBoard, wheelDiameter1, wheelDiameter2, wheelDiameter3, wheelDiameter4, battery1, battery2, battery3, battery4, notifications] writeToFile:settingsPath atomically:YES encoding:NSStringEncodingConversionAllowLossy error:nil]; // Write settings
+    
+    [SVProgressHUD showSuccessWithStatus:@"Settings Saved"];
 }
 
 -(void) loadSettings {
@@ -149,6 +180,10 @@
     battery2SegmentedControl.selectedSegmentIndex = battery2 - 6;
     battery3SegmentedControl.selectedSegmentIndex = battery3 - 6;
     battery4SegmentedControl.selectedSegmentIndex = battery4 - 6;
+    if([settingsArray count] == 11) { // temporary so users can update. remove in the future!
+        notifications = [settingsArray[10] intValue];
+        notificationSegmentedControl.selectedSegmentIndex = notifications - 1;
+    }
 }
 
 -(int) getWheelDiameter {
@@ -200,6 +235,10 @@
         return @"°F";
     }
     return @"°C";
+}
+
+-(int) getNotifications {
+    return notifications;
 }
 
 @end

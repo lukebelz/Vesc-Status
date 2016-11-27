@@ -36,8 +36,6 @@
     [self addSubview:speed];
     [self addSubview:startButton];
     
-    
-    
     return self;
 }
 

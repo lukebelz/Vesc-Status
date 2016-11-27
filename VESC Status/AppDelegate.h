@@ -11,5 +11,7 @@
 @interface AppDelegate : UIResponder
 
 @property (strong, nonatomic) UIWindow *window;
-    
+
+@property (nonatomic, retain) NSDictionary *launchOptionsSaved;
+
 @end
